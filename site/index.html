@@ -17,7 +17,7 @@
 <body>
 
   <!-- ════════ INTRO VIDEO OVERLAY ════════ -->
-  <div id="intro-overlay" aria-hidden="true">
+  <div id="intro-overlay">
     <button id="intro-skip" class="intro-skip-btn" type="button">Skip</button>
     <!-- Envelope video loaded directly in HTML for instant loading -->
     <video id="envelope-video" class="intro-video active" src="videos/envelope-landscape.mp4" autoplay muted playsinline webkit-playsinline preload="auto"></video>
@@ -30,7 +30,7 @@
     <video id="thread-video" class="intro-video" src="videos/TheEEAffairIntro.mp4" muted playsinline webkit-playsinline preload="auto"></video>
 
     <!-- Invitation Card sliding out of envelope -->
-    <div id="invitation-card" class="invitation-card" aria-hidden="true">
+    <div id="invitation-card" class="invitation-card">
       <div class="card-inner">
         <div class="card-monogram">E&amp;E</div>
         <p class="card-subtext">You are cordially invited</p>
@@ -283,7 +283,7 @@
           Tap below and we&rsquo;ll find the closest international airports to you,
           with flights to Lagos around the wedding dates already looked up.
         </p>
-        <button class="btn btn--gold" id="airportBtn" type="button">✈ Find my nearest airports</button>
+        <button class="btn btn--gold" id="airportBtn" type="button">Find my nearest airports</button>
         <div class="travel__results" id="airportResults" hidden></div>
         <div class="travel__fallback" id="airportFallback" hidden>
           <label for="citySelect">Or choose where you&rsquo;re flying from:</label>

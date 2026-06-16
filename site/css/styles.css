@@ -609,7 +609,7 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
   letter-spacing: 0.32em;
   text-transform: uppercase;
   font-size: 17px;
-  color: var(--gold-light);
+  color: var(--ink);
 }
 .hero__venue {
   font-family: var(--sans);
@@ -635,7 +635,7 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
   display: inline-block;
   font-family: var(--serif);
   font-size: clamp(30px, 4vw, 46px);
-  color: var(--gold);
+  color: var(--ink);
   font-weight: 500;
   transform-origin: center;
 }
@@ -646,7 +646,7 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
   font-size: 11px;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--cream-dim);
+  color: var(--ink-dim);
   margin-top: 2px;
 }
 .countdown__sep { color: var(--gold-faint); font-size: 26px; }
