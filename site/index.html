@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TheEEAffair — Ebenezer &amp; Elizabeth · November 21, 2026 · Lagos</title>
+  <meta name="description" content="Ebenezer & Elizabeth are tying the knot. Saturday, November 21, 2026 — Jigiwura Event Centre, Ikorodu, Lagos." />
+  <meta property="og:title" content="TheEEAffair — Ebenezer & Elizabeth" />
+  <meta property="og:description" content="Saturday, November 21, 2026 · Jigiwura Event Centre, Ikorodu, Lagos" />
+  <meta property="og:image" content="images/img_4116.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231E0E05'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' fill='%23C9A84C' font-family='serif' font-style='italic'%3EE%26E%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+  <!-- ════════ INTRO VIDEO OVERLAY ════════ -->
+  <div id="intro-overlay" aria-hidden="true">
+    <button id="intro-skip" class="intro-skip-btn" type="button">Skip</button>
+    <!-- Envelope video loaded directly in HTML for instant loading -->
+    <video id="envelope-video" class="intro-video active" src="videos/envelope-landscape.mp4" autoplay muted webkit-playsinline preload="auto"></video>
+
+    <!-- Gold-thread video overlay -->
+    <div id="thread-bg-wrapper" class="thread-bg-wrapper">
+      <video id="thread-bg-video" src="videos/TheEEAffairIntro.mp4" muted webkit-playsinline preload="auto" aria-hidden="true"></video>
+    </div>
+    <video id="thread-video" class="intro-video" src="videos/TheEEAffairIntro.mp4" muted webkit-playsinline preload="auto"></video>
+
+    <!-- Invitation Card sliding out of envelope -->
+    <div id="invitation-card" class="invitation-card" aria-hidden="true">
+      <div class="card-inner">
+        <div class="card-monogram">E&amp;E</div>
+        <p class="card-subtext">You are cordially invited</p>
+        <p class="card-subtext-small">to the wedding celebration of</p>
+        <h2 class="card-names">Ebenezer &amp; Elizabeth</h2>
+        <div class="card-gold-rule"></div>
+        <p class="card-date">Saturday, November 21, 2026</p>
+        <p class="card-venue">Jigiwura Event Centre · Lagos</p>
+        <button id="open-invitation-btn" class="btn btn--gold" type="button">Open Invitation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ NAV ════════ -->
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#home">Ebenezer <span>&amp;</span> Elizabeth</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+    <nav class="nav__links" id="navLinks">
+      <a href="#story">Our Story</a>
+      <a href="#events">Events</a>
+      <a href="#venue">Venue</a>
+      <a href="#travel">Travel</a>
+      <a href="#dresscode">Dress Code</a>
+      <a href="#wishes">Wishes</a>
+      <a href="#gifts">Gifts</a>
+      <a href="#faqs">FAQs</a>
+      <a href="#rsvp" class="nav__cta">RSVP</a>
+    </nav>
+  </header>
+
+  <main>
+
+  <!-- ════════ 01 · HERO ════════ -->
+  <section class="hero" id="home">
+    <div class="hero__photo" aria-hidden="true" data-parallax="0.14"></div>
+    <div class="hero__veil" aria-hidden="true"></div>
+    <div class="hero__filigree" aria-hidden="true"></div>
+    <div class="hero__inner">
+      <p class="hero__label">The EE Affair</p>
+      <h1 class="hero__names">
+        <span class="hero__name">Ebenezer <em>Oluwafemi</em> Odeogberin</span>
+        <span class="hero__amp">&amp;</span>
+        <span class="hero__name">Elizabeth <em>Imoleayo</em> Omorogieva</span>
+      </h1>
+      <p class="hero__tagline">are tying the knot</p>
+      <div class="gold-rule" data-rule></div>
+      <p class="hero__date">Saturday, November 21, 2026</p>
+      <p class="hero__venue">Jigiwura Event Centre · Ikorodu, Lagos</p>
+      <a class="btn btn--gold hero__rsvp" href="#rsvp">RSVP Now</a>
+    </div>
+    <div class="countdown" id="countdown" aria-label="Countdown to the wedding">
+      <div class="countdown__unit"><span id="cd-days">—</span><small>Days</small></div>
+      <div class="countdown__sep">·</div>
+      <div class="countdown__unit"><span id="cd-hours">—</span><small>Hours</small></div>
+      <div class="countdown__sep">·</div>
+      <div class="countdown__unit"><span id="cd-mins">—</span><small>Minutes</small></div>
+      <div class="countdown__sep">·</div>
+      <div class="countdown__unit"><span id="cd-secs">—</span><small>Seconds</small></div>
+    </div>
+  </section>
+
+  <!-- ════════ 02 · OUR STORY ════════ -->
+  <section class="section story" id="story">
+    <div class="section__head" data-reveal>
+      <p class="section__label">How It Began</p>
+      <h2 class="section__title"><em>A Thread That Chose Us</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <div class="story__grid">
+      <div class="story__text" data-reveal>
+        <p>It all started with a random scroll through a friend&rsquo;s WhatsApp status. She&rsquo;s a jack-of-all-trades, always juggling a million things &mdash; and among the many pictures she posted that day was a photo of him. Out of pure amusement, Elizabeth replied, jokingly asking if matchmaking had been added to her long list of businesses. They laughed it off. She didn&rsquo;t think much more of it.</p>
+        <p class="story__fate"><em>Little did she know, fate was already at work.</em></p>
+        <p>A few days later, a message appeared in her TikTok DMs. It was him. Their mutual friend had quietly sent him her page, and he hadn&rsquo;t hesitated.</p>
+        <p>At the time, Elizabeth was going through a heavy, draining season in her life and didn&rsquo;t have much energy to give. But Ebenezer was consistent. He stayed steady, patient, and intentional &mdash; until her walls came down.</p>
+        <p>She&rsquo;ll never forget one of the very first things he ever said to her:</p>
+        <blockquote class="story__quote-mobile">&ldquo;You&rsquo;re my wife, and it&rsquo;s you I&rsquo;m getting married to. Even God has sealed it.&rdquo;</blockquote>
+        <p>Like he knew right from the very start. Today, those words are their reality. Elizabeth is marrying the man who truly sees her, loves and protects her fiercely, respects her opinions, encourages her dreams, and loves her so deeply.</p>
+        <p class="story__teamo">Te amo, Teddy Bear.</p>
+      </div>
+      <figure class="story__media" data-reveal>
+        <img src="images/img_4115.jpg" alt="Ebenezer and Elizabeth together on the night of the proposal" loading="lazy" />
+        <blockquote class="story__quote">&ldquo;You&rsquo;re my wife, and it&rsquo;s you I&rsquo;m getting married to. <span>Even God has sealed it.</span>&rdquo;</blockquote>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ════════ 03 · GALLERY ════════ -->
+  <section class="section gallery" id="gallery">
+    <div class="section__head" data-reveal>
+      <p class="section__label">Moments</p>
+      <h2 class="section__title"><em>Before the Day</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <div class="gallery__marquee" data-reveal>
+      <div class="gallery__track" id="galleryTrack">
+        <figure class="gallery__item">
+          <img src="images/img_4116.jpg" alt="Ebenezer and Elizabeth by candlelight" loading="lazy" />
+        </figure>
+        <figure class="gallery__item">
+          <img src="images/img_9273.jpg" alt="The newly engaged couple, the night she said yes" loading="lazy" />
+        </figure>
+        <figure class="gallery__item">
+          <img src="images/img_9255.jpg" alt="The ring, hands intertwined over the bouquet" loading="lazy" />
+        </figure>
+        <figure class="gallery__item">
+          <img src="images/img_9395.jpg" alt="Elizabeth with her bouquet, Ebenezer behind her" loading="lazy" />
+        </figure>
+        <figure class="gallery__item">
+          <img src="images/img_9289.jpg" alt="The engagement ring resting among flowers" loading="lazy" />
+        </figure>
+        <figure class="gallery__item">
+          <img src="images/img_9259.jpg" alt="A quiet embrace" loading="lazy" />
+        </figure>
+        <figure class="gallery__item">
+          <img src="images/img_9403.jpg" alt="Elizabeth with the proposal bouquet" loading="lazy" />
+        </figure>
+      </div>
+    </div>
+    <div class="gallery__dots" id="galleryDots" aria-label="Jump to a photo"></div>
+    <p class="gallery__note" data-reveal>Pre-shoot photos will be added here before November 19th. Check back closer to the day.</p>
+  </section>
+
+  <!-- ════════ 04 · THE CELEBRATIONS ════════ -->
+  <section class="section events" id="events">
+    <div class="section__head" data-reveal>
+      <p class="section__label">Mark Your Calendars</p>
+      <h2 class="section__title"><em>The Celebrations</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <div class="events__cards">
+      <article class="event-card event-card--muted" data-reveal>
+        <p class="event-card__date">Wednesday, November 18, 2026</p>
+        <h3 class="event-card__title">Court &amp; White Wedding</h3>
+        <p class="event-card__detail">For close friends and family.<br />Venue and time to be confirmed.</p>
+        <p class="event-card__badge">Private · Invite Only</p>
+      </article>
+      <article class="event-card event-card--main" data-reveal>
+        <p class="event-card__date">Saturday, November 21, 2026</p>
+        <h3 class="event-card__title">Traditional Ceremony<br />&amp; Reception</h3>
+        <p class="event-card__detail">
+          Jigiwura Event Centre<br />
+          153 Obafemi Awolowo Rd, Ikorodu, 104101, Lagos
+        </p>
+        <p class="event-card__times">Reception begins: 2:00 PM<br />Close of celebrations: 10:00 PM</p>
+        <p class="event-card__badge event-card__badge--gold">Strictly by Invitation</p>
+      </article>
+    </div>
+    <div class="timeline" data-reveal>
+      <div class="timeline__item">
+        <span class="timeline__time">1:00 PM</span>
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <span class="timeline__what">Doors open — guests arrive and are seated</span>
+      </div>
+      <div class="timeline__item">
+        <span class="timeline__time">1:30 PM</span>
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <span class="timeline__what">Final seating — please be seated by this time</span>
+      </div>
+      <div class="timeline__item">
+        <span class="timeline__time">2:00 PM</span>
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <span class="timeline__what">Traditional Ceremony begins<br /><small>Aso Oke, champagne gold &amp; chocolate — the colours of the day. Reception immediately follows.</small></span>
+      </div>
+      <div class="timeline__item">
+        <span class="timeline__time">Evening</span>
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <span class="timeline__what">Dinner, toasts, open floor</span>
+      </div>
+      <div class="timeline__item">
+        <span class="timeline__time">10:00 PM</span>
+        <span class="timeline__dot" aria-hidden="true"></span>
+        <span class="timeline__what">Close of celebrations</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 05 · VENUE & GETTING THERE ════════ -->
+  <section class="section venue" id="venue">
+    <div class="section__head" data-reveal>
+      <p class="section__label">Find Us</p>
+      <h2 class="section__title"><em>Jigiwura Event Centre</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <div class="venue__grid">
+      <div class="venue__map" data-reveal>
+        <iframe
+          title="Map — Jigiwura Event Centre, Ikorodu, Lagos"
+          src="https://www.google.com/maps?q=Jigiwura+Event+Centre,+153+Obafemi+Awolowo+Rd,+Ikorodu,+Lagos,+Nigeria&output=embed"
+          loading="lazy"
+          allowfullscreen></iframe>
+      </div>
+      <div class="venue__info" data-reveal>
+        <h3>Jigiwura Event Centre</h3>
+        <p class="venue__addr">153 Obafemi Awolowo Rd<br />Ikorodu, 104101<br />Lagos, Nigeria</p>
+        <p class="venue__when">Saturday, November 21, 2026<br />Gates open at 1:00 PM</p>
+        <p class="venue__parking">Parking is available on-site.</p>
+        <p class="venue__distance" id="venueDistance" hidden></p>
+        <div class="venue__buttons">
+          <a class="btn btn--gold" target="_blank" rel="noopener"
+             href="https://www.google.com/maps/dir/?api=1&amp;destination=Jigiwura+Event+Centre,+153+Obafemi+Awolowo+Rd,+Ikorodu,+Lagos,+Nigeria">
+            Google Maps →
+          </a>
+          <a class="btn btn--line" target="_blank" rel="noopener"
+             href="https://waze.com/ul?q=Jigiwura%20Event%20Centre%20Ikorodu%20Lagos&amp;navigate=yes">
+            Waze
+          </a>
+          <a class="btn btn--line" target="_blank" rel="noopener"
+             href="https://maps.apple.com/?daddr=153+Obafemi+Awolowo+Rd,+Ikorodu,+Lagos,+Nigeria">
+            Apple Maps
+          </a>
+        </div>
+        <button class="btn btn--ghost" id="distanceBtn" type="button">How far am I from the venue?</button>
+        <p class="venue__note">If you are coming from Lagos Island or the Mainland, allow at least 90 minutes travel time, especially on a Saturday morning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 05b · TRAVEL & STAY ════════ -->
+  <section class="section travel" id="travel">
+    <div class="section__head" data-reveal>
+      <p class="section__label">Flying In</p>
+      <h2 class="section__title"><em>Travel &amp; Stay</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <div class="travel__grid">
+      <article class="travel-card" data-reveal>
+        <p class="travel-card__label">Your Destination</p>
+        <h3 class="travel-card__title">Murtala Muhammed<br />International Airport <span>(LOS)</span></h3>
+        <p class="travel-card__body">
+          Lagos&rsquo; international airport, in Ikeja. All international flights land here;
+          domestic flights use the MMA2 terminal next door.
+        </p>
+        <p class="travel-card__body">
+          The drive from the airport to the venue in Ikorodu is roughly
+          <strong>35&ndash;45&nbsp;km</strong> &mdash; plan for <strong>1&frac12; to 2+ hours</strong>
+          by road. We recommend landing by <strong>Thursday, November 19</strong> to settle in
+          before the day.
+        </p>
+        <a class="btn btn--line" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/?api=1&amp;origin=Murtala+Muhammed+International+Airport,+Ikeja,+Lagos&amp;destination=Jigiwura+Event+Centre,+153+Obafemi+Awolowo+Rd,+Ikorodu,+Lagos,+Nigeria">
+          Directions: Airport → Venue
+        </a>
+      </article>
+      <article class="travel-card" data-reveal>
+        <p class="travel-card__label">From Where You Are</p>
+        <h3 class="travel-card__title">Find Your<br />Nearest Airport</h3>
+        <p class="travel-card__body">
+          Tap below and we&rsquo;ll find the closest international airports to you,
+          with flights to Lagos around the wedding dates already looked up.
+        </p>
+        <button class="btn btn--gold" id="airportBtn" type="button">✈ Find my nearest airports</button>
+        <div class="travel__results" id="airportResults" hidden></div>
+        <div class="travel__fallback" id="airportFallback" hidden>
+          <label for="citySelect">Or choose where you&rsquo;re flying from:</label>
+          <select id="citySelect">
+            <option value="">Select a city…</option>
+          </select>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ════════ 06 · DRESS CODE ════════ -->
+  <section class="section dresscode" id="dresscode">
+    <div class="section__head" data-reveal>
+      <p class="section__label">Dress Code</p>
+      <h2 class="section__title"><em>Come Dressed for the Occasion</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <p class="dresscode__lede" data-reveal><em>Our Aso Oke is Champagne Gold &amp; Chocolate &mdash; the fabric of our union, woven in colour.</em></p>
+    <div class="dresscode__cards">
+      <article class="dress-card" data-reveal>
+        <div class="dress-card__dots" aria-hidden="true">
+          <span class="dot dot--mint"></span>
+        </div>
+        <h3>Groomsmen &amp; Aso Ebi Ladies</h3>
+        <p class="dress-card__colour">Mint Green — traditional attire</p>
+        <p class="dress-card__note">Fabric available. Contact the wedding team to purchase.</p>
+      </article>
+      <article class="dress-card" data-reveal>
+        <div class="dress-card__dots" aria-hidden="true">
+          <span class="dot dot--lilac"></span>
+          <span class="dot dot--purple"></span>
+        </div>
+        <h3>General Invitees</h3>
+        <p class="dress-card__colour">Lilac &amp; Purple tones</p>
+        <p class="dress-card__note">Formal or traditional welcome.</p>
+      </article>
+      <article class="dress-card dress-card--couple" data-reveal>
+        <div class="dress-card__dots" aria-hidden="true">
+          <span class="dot dot--gold"></span>
+          <span class="dot dot--chocolate"></span>
+        </div>
+        <h3>The Couple</h3>
+        <p class="dress-card__colour">Champagne Gold &amp; Chocolate Aso Oke</p>
+        <p class="dress-card__note">The colours of the day.</p>
+      </article>
+    </div>
+    <p class="dresscode__fabric" data-reveal>If you would like to purchase Aso Ebi fabric, please reach out to <strong>Elizabeth</strong> or <strong>Ebenezer</strong> (contact details below). Fabric is available while stock lasts.</p>
+  </section>
+
+  <!-- ════════ 07 · WORDS & WISHES ════════ -->
+  <section class="section wishes" id="wishes">
+    <div class="section__head" data-reveal>
+      <p class="section__label">For the Couple</p>
+      <h2 class="section__title"><em>Say Something Beautiful</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <p class="wishes__intro" data-reveal>
+      For the aso ebi ladies who danced before the ceremony started. For the groomsmen who&rsquo;ve been
+      holding Ebenezer down for years. For the aunties who prayed. For the friends who saw this coming
+      before either of them did. This space is yours.
+      <br /><br />
+      Tell E&amp;E how you know them. What they mean to you. Leave a prayer or a wish for their marriage.
+      These words will stay on this page long after the day is over.
+    </p>
+    <div class="wishes__grid">
+      <form class="wishes__form" id="wishForm" data-reveal>
+        <label>Your name
+          <input type="text" name="name" required autocomplete="name" />
+        </label>
+        <label>Your role
+          <select name="role" required>
+            <option value="">Choose…</option>
+            <option>Aso Ebi Lady</option>
+            <option>Groomsman</option>
+            <option>Family — Bride&rsquo;s side</option>
+            <option>Family — Groom&rsquo;s side</option>
+            <option>Friend of the Couple</option>
+            <option>Guest</option>
+          </select>
+        </label>
+        <label>Your message
+          <textarea name="message" rows="6" required
+            placeholder="I've known Ebenezer since… / The moment I knew Elizabeth was special… / My prayer for their marriage is…"></textarea>
+        </label>
+        <button class="btn btn--gold" type="submit">Leave Your Words</button>
+        <p class="wishes__thanks" id="wishThanks" hidden>Thank you — your words are with E&amp;E. ✨</p>
+      </form>
+      <div class="wishes__feed" id="wishFeed" data-reveal>
+        <!-- seeded + submitted messages render here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 08 · RSVP ════════ -->
+  <section class="section rsvp" id="rsvp">
+    <div class="rsvp__texture" aria-hidden="true"></div>
+    <div class="section__head" data-reveal>
+      <p class="section__label">RSVP</p>
+      <h2 class="section__title"><em>Will You Be There?</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <p class="rsvp__deadline" data-reveal>Kindly respond by <strong>October 31, 2026</strong></p>
+    <p class="rsvp__subtext" data-reveal>
+      Your access card admits one person. Please RSVP with the name on your invitation.
+      Children are not permitted, with the exception of children from close family —
+      if in doubt, contact us.
+    </p>
+    <div class="rsvp__panel" data-reveal>
+      <form class="rsvp__form" id="rsvpForm">
+        <div class="rsvp__row">
+          <label>First name <input type="text" name="firstName" required autocomplete="given-name" /></label>
+          <label>Last name <input type="text" name="lastName" required autocomplete="family-name" /></label>
+        </div>
+        <div class="rsvp__row">
+          <label>Email address <input type="email" name="email" required autocomplete="email" /></label>
+          <label>Phone number <input type="tel" name="phone" required autocomplete="tel" /></label>
+        </div>
+        <fieldset class="rsvp__attending">
+          <legend>Will you be attending?</legend>
+          <label class="rsvp__radio"><input type="radio" name="attending" value="yes" required /> <span>Yes, I&rsquo;ll be there</span></label>
+          <label class="rsvp__radio"><input type="radio" name="attending" value="no" /> <span>Regrettably, I cannot attend</span></label>
+        </fieldset>
+        <label>Dietary requirements or special notes <span class="opt">(optional)</span>
+          <textarea name="notes" rows="3"></textarea>
+        </label>
+        <button class="btn btn--gold" type="submit">Send RSVP</button>
+      </form>
+      <div class="rsvp__send" aria-hidden="true">
+        <svg class="rsvp__trail" viewBox="0 0 300 220" preserveAspectRatio="none">
+          <path d="M30 180 Q 150 150 290 -20" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="2 11" stroke-linecap="round" />
+        </svg>
+        <svg class="rsvp__plane" viewBox="0 0 512 512">
+          <path d="M12 256 504 20 264 312 Z" fill="#E8C97A" />
+          <path d="M264 312 504 20 320 500 Z" fill="#B8942F" />
+        </svg>
+      </div>
+      <div class="rsvp__confirm" id="rsvpYes" hidden>
+        <p class="rsvp__confirm-title"><em>You&rsquo;re on the list.</em></p>
+        <p>We look forward to celebrating with you on November 21, 2026.</p>
+      </div>
+      <div class="rsvp__confirm" id="rsvpNo" hidden>
+        <p class="rsvp__confirm-title"><em>We&rsquo;ll miss you there.</em></p>
+        <p>Thank you for letting us know.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 09 · GIFTS & REGISTRY ════════ -->
+  <section class="section gifts section--choco" id="gifts">
+    <div class="section__head" data-reveal>
+      <p class="section__label">Gifts &amp; Registry</p>
+      <h2 class="section__title"><em>Bless Our Home</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <p class="gifts__lede" data-reveal><em>Your presence on the day is our greatest gift. But if your heart leads you further &mdash; we are building a home, and every contribution means more than words can say.</em></p>
+    <div class="gifts__actions" data-reveal>
+      <a class="btn btn--gold btn--big" href="https://www.paypal.me/ElizabethOmorogieva" target="_blank" rel="noopener">Send a Gift via PayPal</a>
+      <div class="gifts__bank">
+        <p class="gifts__bank-label">Or a cash gift by transfer</p>
+        <p class="gifts__bank-name">Elizabeth Omorogieva</p>
+        <p class="gifts__bank-detail">Paga &middot; Account 1385662416</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 10 · SHARE YOUR SHOTS ════════ -->
+  <section class="section shots" id="shots">
+    <div class="section__head" data-reveal>
+      <p class="section__label">Photo Sharing</p>
+      <h2 class="section__title"><em>Your Camera, Our Album</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <p class="shots__copy" data-reveal>
+      At every table during the reception, you&rsquo;ll find a small card with a QR code.
+      Scan it to upload the photos you take on the day directly to our shared wedding album —
+      so we can see the celebration through your eyes too.
+    </p>
+    <div class="shots__qr-frame" data-reveal>
+      <div class="shots__qr" id="qrSlot">
+        <span class="gallery__diamond" aria-hidden="true">◆</span>
+        <span class="shots__qr-soon">QR code arriving<br />with the album link</span>
+      </div>
+    </div>
+    <p class="shots__under" data-reveal>You can also scan ahead of the day using the code above.</p>
+  </section>
+
+  <!-- ════════ 11 · FAQs ════════ -->
+  <section class="section faqs" id="faqs">
+    <div class="section__head" data-reveal>
+      <p class="section__label">FAQs</p>
+      <h2 class="section__title"><em>Questions?</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <div class="faqs__grid" data-reveal>
+      <details class="faq">
+        <summary>Can I bring a plus-one?</summary>
+        <p>Your access card admits one person only. Plus-ones are not permitted unless specifically noted on your invitation.</p>
+      </details>
+      <details class="faq">
+        <summary>Are children allowed?</summary>
+        <p>This is an adult event. Children are not permitted, with the exception of children belonging to close family. If you are unsure, please contact us before the day.</p>
+      </details>
+      <details class="faq">
+        <summary>What time should I arrive?</summary>
+        <p>Doors open at 1:00 PM. We strongly recommend arriving by 1:30 PM at the latest. The ceremony begins promptly at 2:00 PM and late arrivals may not be seated once proceedings have started.</p>
+      </details>
+      <details class="faq">
+        <summary>Is there parking?</summary>
+        <p>Yes, parking is available on-site at Jigiwura Event Centre.</p>
+      </details>
+      <details class="faq">
+        <summary>What is the dress code?</summary>
+        <p>Groomsmen and aso ebi ladies are in Mint Green. General invitees are in Lilac and Purple tones. See the Dress Code section for full details.</p>
+      </details>
+      <details class="faq">
+        <summary>Can I take photos?</summary>
+        <p>Please follow the photographer&rsquo;s lead during the ceremony itself. At the reception, you are welcome to take photos and we&rsquo;d love for you to share them via the QR code on your table.</p>
+      </details>
+      <details class="faq">
+        <summary>Is it an outdoor event?</summary>
+        <p>No. The celebration is fully indoors at Jigiwura Event Centre.</p>
+      </details>
+      <details class="faq">
+        <summary>How do I get there?</summary>
+        <p>The venue is at 153 Obafemi Awolowo Rd, Ikorodu, Lagos. Use the map and direction buttons in the Venue section above. If travelling from Lagos Island or the Mainland, allow at least 90 minutes on a Saturday.</p>
+      </details>
+      <details class="faq">
+        <summary>How do I purchase Aso Ebi fabric?</summary>
+        <p>Contact for the groom: <a href="tel:+2347064461300">+234 706 446 1300</a> or for the bride: <a href="tel:+2347083924932">+234 708 392 4932</a>. Fabric is available while stock lasts.</p>
+      </details>
+      <details class="faq">
+        <summary>When is the RSVP deadline?</summary>
+        <p>October 31, 2026. Please do not leave it late.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ════════ 12 · CONTACT ════════ -->
+  <section class="section contact" id="contact">
+    <div class="section__head" data-reveal>
+      <p class="section__label">Contact</p>
+      <h2 class="section__title"><em>Need to Reach Us?</em></h2>
+      <div class="gold-rule" data-rule></div>
+    </div>
+    <div class="contact__cards">
+      <article class="contact-card" data-reveal>
+        <p class="contact-card__side">The Groom</p>
+        <a href="tel:+2347064461300">+234 706 446 1300</a>
+      </article>
+      <article class="contact-card" data-reveal>
+        <p class="contact-card__side">The Bride</p>
+        <a href="tel:+2347083924932">+234 708 392 4932</a>
+        <a href="tel:+2348154002358">+234 815 400 2358</a>
+      </article>
+    </div>
+    <p class="contact__note" data-reveal><em>For RSVP queries, Aso Ebi purchases, or any questions about the day &mdash; these are your people.</em></p>
+  </section>
+
+  </main>
+
+  <!-- ════════ FOOTER ════════ -->
+  <footer class="footer">
+    <p class="footer__names">Ebenezer <span>&amp;</span> Elizabeth</p>
+    <p class="footer__date">November 21, 2026 · Lagos, Nigeria</p>
+    <nav class="footer__links">
+      <a href="#story">Our Story</a>
+      <a href="#events">Events</a>
+      <a href="#venue">Venue</a>
+      <a href="#wishes">Wishes</a>
+      <a href="#rsvp">RSVP</a>
+      <a href="#gifts">Gifts</a>
+      <a href="#faqs">FAQs</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p class="footer__copy">TheEEAffair © 2026</p>
+  </footer>
+
+  <script src="js/airports.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
