@@ -569,7 +569,7 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
   font-size: 15px;
   letter-spacing: 0.55em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--choco-deep);
   opacity: 1;
   margin-bottom: 38px;
 }
