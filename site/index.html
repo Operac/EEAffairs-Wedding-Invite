@@ -19,12 +19,9 @@
   <!-- ════════ INTRO VIDEO OVERLAY ════════ -->
   <div id="intro-overlay" aria-hidden="true">
     <button id="intro-skip" class="intro-skip-btn" type="button">Skip</button>
-    <!-- Envelope video: loads portrait on mobile portrait viewports, landscape on desktop -->
-    <video id="envelope-video" class="intro-video active" autoplay muted playsinline preload="auto">
-      <source src="videos/envelope-portrait.mp4" type="video/mp4" media="(orientation: portrait)">
-      <source src="videos/envelope-landscape.mp4" type="video/mp4" media="(orientation: landscape)">
-      <source src="videos/envelope-landscape.mp4" type="video/mp4">
-    </video>
+    <!-- Envelope video loaded directly in HTML for instant loading -->
+    <video id="envelope-video" class="intro-video active" src="videos/envelope-landscape.mp4" autoplay muted playsinline preload="auto"></video>
+
 
     <!-- Gold-thread video overlay -->
     <div id="thread-bg-wrapper" class="thread-bg-wrapper">

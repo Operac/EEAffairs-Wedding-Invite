@@ -111,6 +111,15 @@ img { display: block; max-width: 100%; }
 }
 
 @media (orientation: portrait) {
+  #envelope-video {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(90deg) scale(1.02);
+    width: max(177.78vw, 100vh);
+    height: max(100vw, 56.25vh);
+    object-fit: cover;
+  }
   #thread-video {
     object-fit: contain;
   }
@@ -150,23 +159,30 @@ img { display: block; max-width: 100%; }
   position: absolute;
   top: 24px;
   right: 24px;
-  background: transparent;
-  border: 1px solid rgba(184, 148, 47, 0.4);
+  background: rgba(30, 14, 5, 0.72);
+  border: 1px solid var(--gold);
   color: var(--gold-bright);
   font-family: var(--sans);
-  font-weight: 300;
-  font-size: 11px;
-  letter-spacing: 0.2em;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  padding: 8px 16px;
+  padding: 10px 20px;
+  border-radius: 4px;
   cursor: pointer;
   z-index: 30;
-  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 .intro-skip-btn:hover {
-  background: rgba(184, 148, 47, 0.15);
-  border-color: var(--gold-bright);
-  color: #fff;
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--choco-deep);
+  transform: translateY(-1px);
+}
+.intro-skip-btn:active {
+  transform: translateY(0);
 }
 
 /* ── Invitation Card ─────────────────────── */
@@ -197,6 +213,19 @@ img { display: block; max-width: 100%; }
   transform: translate(-50%, -60%) scale(0.95);
   transition: transform 0.8s ease, opacity 0.8s ease;
   pointer-events: none;
+}
+
+@media (orientation: portrait) {
+  .invitation-card {
+    transform: translate(100vw, -50%) scale(0.75);
+  }
+  .invitation-card.visible {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .invitation-card.fade-out {
+    transform: translate(-60%, -50%) scale(0.95);
+    opacity: 0;
+  }
 }
 
 
