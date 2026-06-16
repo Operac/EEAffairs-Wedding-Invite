@@ -111,15 +111,6 @@ img { display: block; max-width: 100%; }
 }
 
 @media (orientation: portrait) {
-  #envelope-video {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) rotate(90deg);
-    width: 100vh;
-    height: 100vw;
-    object-fit: cover;
-  }
   #thread-video {
     object-fit: contain;
   }
@@ -208,18 +199,7 @@ img { display: block; max-width: 100%; }
   pointer-events: none;
 }
 
-@media (orientation: portrait) {
-  .invitation-card {
-    transform: translate(100vw, -50%) scale(0.75);
-  }
-  .invitation-card.visible {
-    transform: translate(-50%, -50%) scale(1);
-  }
-  .invitation-card.fade-out {
-    transform: translate(-60%, -50%) scale(0.95);
-    opacity: 0;
-  }
-}
+
 .card-inner {
   border: 1px solid var(--gold-faint);
   padding: 38px 24px;

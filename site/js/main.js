@@ -56,9 +56,7 @@ const CONFIG = {
   let started = false;
   let finished = false;
 
-  // Use the same landscape envelope video on all devices
-  envelopeVideo.src = "videos/envelope-landscape.mp4";
-  envelopeVideo.load();
+
 
   const finish = () => {
     if (finished) return;
