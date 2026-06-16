@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   TheEEAffair — ivory, chocolate & gold
+   TheEEAffair - ivory, chocolate & gold
    Light, premium palette. Ivory canvas, chocolate
    ink, champagne-gold accents.
    ═══════════════════════════════════════════ */
@@ -10,7 +10,7 @@
   --ivory-deep: #F2EADB;   /* cards, footer, alt surfaces */
   --paper: #FFFDF8;        /* crisp white inputs / panels */
 
-  /* Chocolate (kept dark — button text, intro splash, dark accents) */
+  /* Chocolate (kept dark - button text, intro splash, dark accents) */
   --choco-deep: #1E0E05;
   --choco-mid: #3B1F0F;
   --choco-soft: #2A1609;
@@ -546,7 +546,7 @@ body.hero-in .hero__tagline { animation: heroRise 0.9s cubic-bezier(0.16,1,0.3,1
 body.hero-in .hero__date    { animation: heroRise 0.9s cubic-bezier(0.16,1,0.3,1) 0.88s both; }
 body.hero-in .hero__venue   { animation: heroRise 0.9s cubic-bezier(0.16,1,0.3,1) 1.00s both; }
 body.hero-in .hero__rsvp    { animation: heroRise 0.9s cubic-bezier(0.16,1,0.3,1) 1.16s both; }
-/* countdown is absolutely centred (translateX) — fade only, keep position. */
+/* countdown is absolutely centred (translateX) - fade only, keep position. */
 @keyframes heroFade { from { opacity: 0; } to { opacity: 1; } }
 body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
 /* If the intro never runs (reduced motion / removed), don't hide the hero. */
@@ -814,7 +814,7 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
 .gallery__item--tall { grid-row: span 2; }
 .gallery__item--wide { grid-column: span 3; grid-row: span 1; }
 
-/* ── Moments — horizontal auto-scroll reel on a gentle arc ── */
+/* ── Moments - horizontal auto-scroll reel on a gentle arc ── */
 .gallery__marquee {
   position: relative;
   width: 100%;
@@ -843,7 +843,7 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
   .gallery__marquee .gallery__item { width: 196px; height: 262px; margin-right: 18px; }
 }
 
-/* ── Moments dots — jump to any photo ──────────────────── */
+/* ── Moments dots - jump to any photo ──────────────────── */
 .gallery__dots {
   display: flex;
   justify-content: center;
@@ -882,7 +882,7 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
   color: var(--cream-dim);
 }
 
-/* Flip card — the "coming soon" tiles flip on a gentle loop, revealing
+/* Flip card - the "coming soon" tiles flip on a gentle loop, revealing
    a chocolate teaser face. Hover/focus pauses so guests can read; tap
    works on touch (the loop animates regardless of hover). */
 .flip-card {
@@ -1436,7 +1436,7 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
   gap: 20px;
 }
 
-/* ── RSVP send animation — a gold paper plane takes flight ── */
+/* ── RSVP send animation - a gold paper plane takes flight ── */
 .rsvp__send {
   position: absolute;
   inset: 0;
@@ -1785,7 +1785,7 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
   .nav.scrolled { padding: 10px 20px; }
   .nav__brand { font-size: 20px; }
 
-  /* Hero — countdown joins the flow instead of floating (it overflowed) */
+  /* Hero - countdown joins the flow instead of floating (it overflowed) */
   .hero {
     min-height: 100svh;
     padding: 104px 20px 56px;

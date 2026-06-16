@@ -1,7 +1,7 @@
 // Major international airports with reliable Lagos connectivity (direct or
 // one-stop). Used client-side to find the guest's nearest departure points.
 // [IATA, airport name, city, lat, lon]
-// Coordinates are approximate (±0.01°) — fine for nearest-airport ranking.
+// Coordinates are approximate (±0.01°) - fine for nearest-airport ranking.
 const AIRPORTS = [
   // Nigeria & West Africa
   ["LOS", "Murtala Muhammed International", "Lagos, Nigeria", 6.577, 3.321],
@@ -54,7 +54,7 @@ const AIRPORTS = [
   ["WAW", "Chopin", "Warsaw, Poland", 52.166, 20.967],
   ["PRG", "Václav Havel", "Prague, Czechia", 50.101, 14.260],
   ["BUD", "Ferenc Liszt", "Budapest, Hungary", 47.437, 19.252],
-  // North America — USA
+  // North America - USA
   ["JFK", "John F. Kennedy International", "New York, USA", 40.641, -73.778],
   ["EWR", "Newark Liberty", "Newark / New York, USA", 40.690, -74.169],
   ["IAD", "Washington Dulles", "Washington DC, USA", 38.953, -77.448],
@@ -73,7 +73,7 @@ const AIRPORTS = [
   ["LAX", "Los Angeles International", "Los Angeles, USA", 33.941, -118.408],
   ["SFO", "San Francisco International", "San Francisco, USA", 37.621, -122.379],
   ["SEA", "Seattle–Tacoma", "Seattle, USA", 47.443, -122.301],
-  // North America — Canada
+  // North America - Canada
   ["YYZ", "Toronto Pearson", "Toronto, Canada", 43.677, -79.624],
   ["YUL", "Montréal–Trudeau", "Montréal, Canada", 45.470, -73.741],
   ["YOW", "Ottawa Macdonald–Cartier", "Ottawa, Canada", 45.323, -75.669],

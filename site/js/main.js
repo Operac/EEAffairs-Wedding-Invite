@@ -1,26 +1,26 @@
 /* ═══════════════════════════════════════════
-   TheEEAffair — site behaviour
+   TheEEAffair - site behaviour
    ═══════════════════════════════════════════ */
 
-/* ── CONFIG — fill these in as they become available ── */
+/* ── CONFIG - fill these in as they become available ── */
 const CONFIG = {
-  // Form backend — a Google Apps Script web app URL (see RSVP-SETUP.md).
+  // Form backend - a Google Apps Script web app URL (see RSVP-SETUP.md).
   // Paste the SAME /exec URL into both fields; the script routes RSVPs and
   // Wishes into separate sheet tabs and emails the bride. Until set,
   // submissions save to this browser only and the confirmation still plays.
-  RSVP_ENDPOINT: "",
-  WISHES_ENDPOINT: "",
+  RSVP_ENDPOINT: "https://script.google.com/macros/s/AKfycbzdpNKzRBr8BCzLBrfefAi6hlcA0Dl5KgQBOqd3qn1OyWKtJfMOvGKHSP44iLeqbx5w/exec",
+  WISHES_ENDPOINT: "https://script.google.com/macros/s/AKfycbzdpNKzRBr8BCzLBrfefAi6hlcA0Dl5KgQBOqd3qn1OyWKtJfMOvGKHSP44iLeqbx5w/exec",
   // Shared album URL (Google Photos / Dropbox upload link). When set,
   // a QR code is generated and displayed automatically.
   ALBUM_URL: "",
-  // Ceremony start — 2:00 PM West Africa Time.
+  // Ceremony start - 2:00 PM West Africa Time.
   WEDDING_DATE: "2026-11-21T14:00:00+01:00",
-  // Approximate venue coordinates (Ikorodu) — used only for the
+  // Approximate venue coordinates (Ikorodu) - used only for the
   // "how far am I" estimate, never for navigation links.
   VENUE_LAT: 6.616,
   VENUE_LON: 3.508,
-  // "always"  — the intro plays on every page load (default).
-  // "session" — plays once per browser tab session.
+  // "always"  - the intro plays on every page load (default).
+  // "session" - plays once per browser tab session.
   INTRO_MODE: "always",
 };
 
@@ -341,7 +341,7 @@ const CONFIG = {
   document.body.appendChild(layer);
 })();
 
-/* ── Moments reel — flowing horizontal arc with dot navigation ──
+/* ── Moments reel - flowing horizontal arc with dot navigation ──
    JS-driven so a dot can scrub the chosen photo back to centre, then
    the reel resumes its flow. Pauses on hover. */
 (() => {
@@ -361,7 +361,7 @@ const CONFIG = {
     track.appendChild(clone);
   });
 
-  // Arc layout — repeats every N items so the loop stays seamless.
+  // Arc layout - repeats every N items so the loop stays seamless.
   const amp = 54, rotK = 1.4;
   [...track.children].forEach((item, i) => {
     const p = i % N;
@@ -454,16 +454,8 @@ const CONFIG = {
   const feed = document.getElementById("wishFeed");
   const thanks = document.getElementById("wishThanks");
 
-  // Launch seed so the wall never looks empty — replace text with a real
-  // message from family before going live (coordinate with Temitope).
-  const SEEDED = [
-    {
-      name: "The Odeogberin Family",
-      role: "Family — Groom's side",
-      message:
-        "Ebenezer and Elizabeth — what God has joined together, no one can put asunder. We have prayed for this day, and our hearts are full. We cannot wait to dance with you on November 21st!",
-    },
-  ];
+  // The wishes wall starts empty; guests' messages populate it.
+  const SEEDED = [];
 
   const stored = () => {
     try { return JSON.parse(localStorage.getItem("eeWishes") || "[]"); }
@@ -504,7 +496,7 @@ const CONFIG = {
 
     if (CONFIG.WISHES_ENDPOINT) {
       // text/plain keeps this a CORS "simple request" (no preflight),
-      // which Google Apps Script web apps accept. Fire-and-forget —
+      // which Google Apps Script web apps accept. Fire-and-forget -
       // the on-screen thank-you shows regardless.
       fetch(CONFIG.WISHES_ENDPOINT, {
         method: "POST",
@@ -532,7 +524,7 @@ const CONFIG = {
 
     if (CONFIG.RSVP_ENDPOINT) {
       // text/plain keeps this a CORS "simple request" (no preflight),
-      // which Google Apps Script web apps accept. Fire-and-forget —
+      // which Google Apps Script web apps accept. Fire-and-forget -
       // the confirmation slides in regardless.
       fetch(CONFIG.RSVP_ENDPOINT, {
         method: "POST",
@@ -545,7 +537,7 @@ const CONFIG = {
       const all = JSON.parse(localStorage.getItem("eeRsvps") || "[]");
       all.push({ ...data, at: new Date().toISOString() });
       localStorage.setItem("eeRsvps", JSON.stringify(all));
-    } catch { /* storage unavailable — endpoint still receives it */ }
+    } catch { /* storage unavailable - endpoint still receives it */ }
 
     const panel = form.closest(".rsvp__panel");
     if (panel) panel.classList.add("is-sending");
@@ -579,7 +571,7 @@ const haversineKm = (lat1, lon1, lat2, lon2) => {
 
   btn.addEventListener("click", () => {
     if (!("geolocation" in navigator)) {
-      out.textContent = "Location is not available in this browser — use the map buttons above.";
+      out.textContent = "Location is not available in this browser. Use the map buttons above.";
       out.hidden = false;
       return;
     }
@@ -593,18 +585,18 @@ const haversineKm = (lat1, lon1, lat2, lon2) => {
         );
         let msg;
         if (km < 80) {
-          msg = `You're roughly ${Math.round(km)} km from Jigiwura as the crow flies. On Lagos roads, plan generously — especially on a Saturday.`;
+          msg = `You're roughly ${Math.round(km)} km from Jigiwura as the crow flies. On Lagos roads, plan generously, especially on a Saturday.`;
         } else if (km < 1500) {
-          msg = `You're about ${Math.round(km)} km away — within flying or long-drive distance. See Travel & Stay below.`;
+          msg = `You're about ${Math.round(km)} km away, within flying or long-drive distance. See Travel & Stay below.`;
         } else {
-          msg = `You're about ${Math.round(km).toLocaleString()} km from Lagos — time to look at flights! See Travel & Stay below.`;
+          msg = `You're about ${Math.round(km).toLocaleString()} km from Lagos, time to look at flights! See Travel & Stay below.`;
         }
         out.textContent = msg;
         out.hidden = false;
         btn.hidden = true;
       },
       () => {
-        out.textContent = "We couldn't get your location — no problem. The direction buttons above will use your live position automatically.";
+        out.textContent = "We couldn't get your location. No problem. The direction buttons above will use your live position automatically.";
         out.hidden = false;
         btn.disabled = false;
         btn.textContent = "📍 How far am I from the venue?";
@@ -662,7 +654,7 @@ const haversineKm = (lat1, lon1, lat2, lon2) => {
     if (!a) continue;
     const opt = document.createElement("option");
     opt.value = a[0];
-    opt.textContent = `${a[2]} — ${a[1]} (${a[0]})`;
+    opt.textContent = `${a[2]} · ${a[1]} (${a[0]})`;
     select.appendChild(opt);
   }
   select.addEventListener("change", () => {
@@ -675,7 +667,7 @@ const haversineKm = (lat1, lon1, lat2, lon2) => {
 
   btn.addEventListener("click", () => {
     if (!("geolocation" in navigator)) {
-      showFallback("Location isn't available in this browser — choose your departure city instead:");
+      showFallback("Location isn't available in this browser. Choose your departure city instead:");
       return;
     }
     btn.disabled = true;
@@ -700,7 +692,7 @@ const haversineKm = (lat1, lon1, lat2, lon2) => {
       },
       () => {
         btn.hidden = true;
-        showFallback("No location shared — no problem. Choose where you're flying from:");
+        showFallback("No location shared. No problem. Choose where you're flying from:");
       },
       { timeout: 12000, maximumAge: 600000 },
     );
@@ -713,7 +705,7 @@ const haversineKm = (lat1, lon1, lat2, lon2) => {
   const slot = document.getElementById("qrSlot");
   slot.innerHTML = "";
   const img = document.createElement("img");
-  img.alt = "QR code — scan to open the shared wedding album";
+  img.alt = "QR code: scan to open the shared wedding album";
   img.src =
     "https://api.qrserver.com/v1/create-qr-code/?size=480x480&color=1E0E05&bgcolor=F5EDD6&data=" +
     encodeURIComponent(CONFIG.ALBUM_URL);
