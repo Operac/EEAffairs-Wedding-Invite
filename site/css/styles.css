@@ -565,12 +565,12 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
 }
 .hero__label {
   font-family: var(--sans);
-  font-weight: 300;
+  font-weight: 600;
   font-size: 15px;
   letter-spacing: 0.55em;
   text-transform: uppercase;
-  color: var(--gold-light);
-  opacity: 0.85;
+  color: var(--gold);
+  opacity: 1;
   margin-bottom: 38px;
 }
 .hero__names {
