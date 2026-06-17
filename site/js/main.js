@@ -13,6 +13,9 @@ const CONFIG = {
   // Shared album URL (Google Photos / Dropbox upload link). When set,
   // a QR code is generated and displayed automatically.
   ALBUM_URL: "https://drive.google.com/drive/folders/18MJf_2YCV_Ehnrs5JcUMGehYBQ-tZ6OL",
+  // Live site URL for the photo QR code. Leave blank to auto-use the
+  // current address; set it to the final domain once deployed if you like.
+  SITE_URL: "",
   // Ceremony start - 2:00 PM West Africa Time.
   WEDDING_DATE: "2026-11-21T14:00:00+01:00",
   // Approximate venue coordinates (Ikorodu) - used only for the
@@ -674,20 +677,130 @@ const haversineKm = (lat1, lon1, lat2, lon2) => {
   });
 })();
 
-/* ── Shots: QR code + album button ───────── */
+/* ── Shots: QR code (→ upload form) + album link ───────── */
 (() => {
+  // The "View the shared album" link points at the Drive folder.
   const albumBtn = document.getElementById("albumBtn");
   if (albumBtn && CONFIG.ALBUM_URL) albumBtn.href = CONFIG.ALBUM_URL;
-  if (!CONFIG.ALBUM_URL) return;
+
+  // The QR opens the on-site upload form (this page, #shots) so scanning
+  // at the reception lands a guest straight on the upload form.
   const slot = document.getElementById("qrSlot");
+  if (!slot) return;
+  const base = (CONFIG.SITE_URL || location.origin + location.pathname).replace(/\/[^/]*$/, "/");
+  const uploadUrl = base + "upload.html";
   slot.innerHTML = "";
   const img = document.createElement("img");
-  img.alt = "QR code: scan to open the shared wedding album";
+  img.alt = "QR code: scan to open the photo upload form";
   img.src =
     "https://api.qrserver.com/v1/create-qr-code/?size=480x480&color=1E0E05&bgcolor=F5EDD6&data=" +
-    encodeURIComponent(CONFIG.ALBUM_URL);
+    encodeURIComponent(uploadUrl);
   slot.appendChild(img);
 })();
 
-/* Guest photos go straight to the shared Google Drive album via the
-   "Add Your Photos" button (see the Shots section) - no backend needed. */
+/* ── Photo upload → Google Drive (via the Apps Script) ──────
+   Each photo is read as base64 and posted on its own request
+   (text/plain simple request, no preflight) so guests need no
+   Google account. Fire-and-forget, so we show an optimistic
+   confirmation. See RSVP-SETUP.md for the matching script. */
+(() => {
+  const form         = document.getElementById("photoForm");
+  if (!form) return;
+  const nameInput    = document.getElementById("photoName");
+  const filesInput   = document.getElementById("photoFiles");
+  const submitBtn    = document.getElementById("photoSubmit");
+  const status       = document.getElementById("photoStatus");
+  const successPanel = document.getElementById("shotsSuccess");
+  const successCopy  = document.getElementById("shotsSuccessCopy");
+  const uploadAgain  = document.getElementById("shotsUploadAgain");
+  const dropZone     = document.getElementById("shotsDropZone");
+  const chosenLabel  = document.getElementById("shotsChosenLabel");
+  const endpoint     = CONFIG.RSVP_ENDPOINT;
+
+  // Drop zone feedback
+  filesInput.addEventListener("change", () => {
+    const n = filesInput.files.length;
+    if (n > 0) {
+      chosenLabel.textContent = n === 1 ? "1 photo selected" : `${n} photos selected`;
+      chosenLabel.classList.add("visible");
+    } else {
+      chosenLabel.classList.remove("visible");
+    }
+  });
+  dropZone.addEventListener("dragover",  (e) => { e.preventDefault(); dropZone.classList.add("drag-over"); });
+  dropZone.addEventListener("dragleave", ()  => dropZone.classList.remove("drag-over"));
+  dropZone.addEventListener("drop", (e) => {
+    e.preventDefault();
+    dropZone.classList.remove("drag-over");
+    if (e.dataTransfer.files.length) {
+      filesInput.files = e.dataTransfer.files;
+      filesInput.dispatchEvent(new Event("change"));
+    }
+  });
+
+  const setStatus = (msg) => { status.hidden = false; status.textContent = msg; };
+  const readBase64 = (file) => new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result).split(",")[1]);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+
+  const showSuccess = (count, name) => {
+    form.hidden = true;
+    status.hidden = true;
+    const who = name ? `, ${name}` : "";
+    successCopy.textContent = count === 1
+      ? `Your photo has been shared${who}. It will appear in the album shortly.`
+      : `Your ${count} photos have been shared${who}. They'll appear in the album shortly.`;
+    successPanel.classList.add("visible");
+  };
+
+  uploadAgain && uploadAgain.addEventListener("click", () => {
+    successPanel.classList.remove("visible");
+    form.hidden = false;
+    form.reset();
+    chosenLabel.classList.remove("visible");
+    status.hidden = true;
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const files = [...filesInput.files];
+    if (!files.length) return;
+    if (!endpoint) { setStatus("Photo uploads aren't connected yet. Try the album link below."); return; }
+
+    const name = nameInput ? nameInput.value.trim() : "";
+    submitBtn.disabled = true;
+    const label = submitBtn.textContent;
+    let ok = 0;
+    for (let i = 0; i < files.length; i++) {
+      submitBtn.textContent = `Uploading ${i + 1} of ${files.length}…`;
+      setStatus(`Sending photo ${i + 1} of ${files.length}…`);
+      try {
+        const fileData = await readBase64(files[i]);
+        await fetch(endpoint, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            type: "photo",
+            name,
+            fileName: files[i].name,
+            mimeType: files[i].type || "image/jpeg",
+            fileData,
+            at: new Date().toISOString(),
+          }),
+        });
+        ok++;
+      } catch (_) { /* keep going with the rest */ }
+    }
+    submitBtn.disabled = false;
+    submitBtn.textContent = label;
+    if (ok > 0) {
+      showSuccess(ok, name);
+    } else {
+      setStatus("Something went wrong. Please try again.");
+    }
+  });
+})();

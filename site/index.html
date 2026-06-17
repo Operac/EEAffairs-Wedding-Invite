@@ -462,17 +462,40 @@
       <div class="gold-rule" data-rule></div>
     </div>
     <p class="shots__copy" data-reveal>
-      Tap below, or scan the QR code, to open our shared album and add the photos
-      you take, so we can relive the day through your eyes too.
+      Share the photos you take with us. Just choose your pictures and upload, no app
+      or account needed. On the day, scan the QR code to open this form on your phone.
     </p>
+    <form class="shots__upload" id="photoForm" data-reveal>
+      <label>Your name <span class="opt">(optional)</span>
+        <input type="text" id="photoName" name="name" autocomplete="name" />
+      </label>
+      <label>Your photos
+        <div class="shots__drop-zone" id="shotsDropZone">
+          <input type="file" id="photoFiles" accept="image/*" multiple required />
+          <span class="shots__drop-main">Tap to choose photos</span>
+          <span class="shots__drop-sub">or drag and drop here</span>
+          <span class="shots__drop-chosen" id="shotsChosenLabel"></span>
+        </div>
+      </label>
+      <button class="btn btn--gold btn--big" type="submit" id="photoSubmit">Upload Photos</button>
+      <p class="shots__upload-status" id="photoStatus" hidden></p>
+    </form>
+
+    <!-- Success panel (shown after upload) -->
+    <div class="shots__success" id="shotsSuccess">
+      <div class="shots__success-icon">✓</div>
+      <p class="shots__success-title"><em>Thank you!</em></p>
+      <p class="shots__success-copy" id="shotsSuccessCopy">Your photos have been shared and will appear in the album shortly.</p>
+      <a class="btn btn--outline" id="shotsAlbumLink" href="https://drive.google.com/drive/folders/18MJf_2YCV_Ehnrs5JcUMGehYBQ-tZ6OL" target="_blank" rel="noopener">View the Shared Album</a>
+      <button class="shots__success-again" id="shotsUploadAgain">Upload more photos</button>
+    </div>
     <div class="shots__qr-frame" data-reveal>
       <div class="shots__qr" id="qrSlot">
         <span class="gallery__diamond" aria-hidden="true">◆</span>
-        <span class="shots__qr-soon">QR code arriving<br />with the album link</span>
+        <span class="shots__qr-soon">QR code<br />loading…</span>
       </div>
     </div>
-    <a class="btn btn--gold btn--big shots__album-btn" id="albumBtn" href="https://drive.google.com/drive/folders/18MJf_2YCV_Ehnrs5JcUMGehYBQ-tZ6OL" target="_blank" rel="noopener" data-reveal>Add Your Photos</a>
-    <p class="shots__under" data-reveal>Opens our shared Google Drive album, where you can add your pictures.</p>
+    <p class="shots__under" data-reveal>Scan the code to open this upload form on your phone. Want to browse the photos? <a class="shots__album-link" id="albumBtn" href="https://drive.google.com/drive/folders/18MJf_2YCV_Ehnrs5JcUMGehYBQ-tZ6OL" target="_blank" rel="noopener">View the shared album</a>.</p>
     <p class="shots__hashtags" data-reveal>
       Share your moments with<br />
       <strong>#BecomingOdeogberin2026</strong> &nbsp;·&nbsp; <strong>#AnEleganceOfEsAndOs</strong>

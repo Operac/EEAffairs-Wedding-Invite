@@ -1,20 +1,45 @@
-# RSVP (and Wishes) → Google Sheet, with email alerts
+# RSVP + Photo uploads → Google (with email alerts)
 
-The **RSVP** form posts to a Google Apps Script web app that appends each
-reply to a Google Sheet and emails the couple. (Wishes now use a Padlet wall
-on the site, and photos go straight to a Google Drive album, so neither of
-those needs this script - it's really just the RSVP collector now.)
+One Google Apps Script web app handles two things from the site:
 
-This is already set up and live. Keep this file as a reference in case the
-script ever needs to be re-pasted or re-deployed.
+1. **RSVP** form → a **RSVPs** tab in your Google Sheet, plus an email alert.
+2. **Guest photo uploads** → saved straight into your **Google Drive folder**
+   (`18MJf_2YCV_Ehnrs5JcUMGehYBQ-tZ6OL`), with a **Photos** tab logging each one.
+
+Guests need **no Google account** for either. (Wishes use a Padlet wall, so
+they don't touch this script.)
 
 ---
 
-## The Apps Script code (reference)
+## To enable photo uploads (update your existing script)
+
+Your RSVP script is already deployed — you just add the photo handling:
+
+1. Open the Sheet → **Extensions → Apps Script**.
+2. Select all, delete, and paste in the **whole script below**.
+3. `PHOTO_FOLDER_ID` is already set to your shared Drive folder. Set
+   `NOTIFY_EMAIL` to your email.
+4. **Deploy → Manage deployments → ✏️ Edit → Version: New version → Deploy.**
+   (Same `/exec` URL — nothing changes on the website.)
+5. It will ask you to **authorize again**, now also for **Google Drive**
+   (so it can save the photos). Approve it (*Advanced → Go to project → Allow*).
+
+> Because the script runs as **you**, it saves into your own folder with no
+> extra sharing needed. (Only set the folder to "Anyone with the link → Viewer"
+> if you also want guests to *browse* the album via the "View the shared album"
+> link.)
+
+After deploying, do a real test: upload a photo from the site's Photo Sharing
+section and confirm it appears in your Drive folder and on the **Photos** tab.
+
+---
+
+## The Apps Script code — paste this whole block
 
 ```javascript
-// TheEEAffair - RSVP collector
-const NOTIFY_EMAIL = "CHANGE_ME@example.com";   // the couple's email
+// TheEEAffair - RSVP + photo collector
+const NOTIFY_EMAIL = "CHANGE_ME@example.com";                 // your email
+const PHOTO_FOLDER_ID = "18MJf_2YCV_Ehnrs5JcUMGehYBQ-tZ6OL";  // your Drive folder
 
 const COLUMNS = {
   rsvp: ["at", "firstName", "lastName", "email", "phone", "attending", "notes"],
@@ -24,7 +49,11 @@ const COLUMNS = {
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents);
-    const kind = (data.type || "rsvp").toLowerCase() === "wish" ? "wish" : "rsvp";
+    const type = (data.type || "rsvp").toLowerCase();
+
+    if (type === "photo") return savePhoto(data);
+
+    const kind = type === "wish" ? "wish" : "rsvp";
     const tabName = kind === "wish" ? "Wishes" : "RSVPs";
     const ss = SpreadsheetApp.getActiveSpreadsheet();
     let sheet = ss.getSheetByName(tabName) || ss.insertSheet(tabName);
@@ -50,7 +79,30 @@ function doPost(e) {
   }
 }
 
-function doGet() { return json({ ok: true, service: "TheEEAffair RSVP" }); }
+// Save one uploaded photo into the Drive folder + log it on a Photos tab.
+function savePhoto(data) {
+  try {
+    const folder = DriveApp.getFolderById(PHOTO_FOLDER_ID);
+    const blob = Utilities.newBlob(
+      Utilities.base64Decode(data.fileData),
+      data.mimeType || "image/jpeg",
+      data.fileName || ("photo-" + Date.now() + ".jpg")
+    );
+    const file = folder.createFile(blob);
+    if (data.name) file.setDescription("Uploaded by: " + data.name);
+
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    let sheet = ss.getSheetByName("Photos");
+    if (!sheet) { sheet = ss.insertSheet("Photos"); sheet.appendRow(["At", "Name", "File", "Link"]); }
+    sheet.appendRow([new Date(), data.name || "", file.getName(), file.getUrl()]);
+
+    return json({ ok: true, url: file.getUrl() });
+  } catch (err) {
+    return json({ ok: false, error: String(err) });
+  }
+}
+
+function doGet() { return json({ ok: true, service: "TheEEAffair forms" }); }
 
 function notify(kind, data) {
   if (!NOTIFY_EMAIL || NOTIFY_EMAIL.indexOf("CHANGE_ME") === 0) return;
@@ -89,15 +141,17 @@ function json(obj) {
 }
 ```
 
-## Deploy / redeploy reminder
+---
 
-Deploy as **Web app**, **Execute as: Me**, **Who has access: Anyone**. If you
-change the code, use **Deploy → Manage deployments → Edit → New version** so
-the same `/exec` URL keeps working.
+## Notes & limits
 
-## Photos
-
-Photos are **not** handled here. The site's "Add Your Photos" button and QR
-code open your shared Google Drive album, where guests add their pictures
-directly. For that to allow contributions, share the Drive folder as
-**"Anyone with the link"**.
+- Photos upload **one at a time** so large pictures don't hit request limits.
+  Phone photos are fine; large videos are not meant for this.
+- Uploads are **fire-and-forget** from the browser (Google can't return a
+  readable response to an account-less request), so the site shows an
+  optimistic confirmation. The real record is the **Photos** tab and the files
+  in your **Drive folder** — check there after a test.
+- The QR code in the Photo Sharing section opens the on-site **upload form**
+  (this page, at `#shots`), so scanning at the reception lands guests on the
+  form. The "View the shared album" link opens the Drive folder for browsing.
+- Two alert inboxes? `NOTIFY_EMAIL = "one@x.com,two@y.com"`.
