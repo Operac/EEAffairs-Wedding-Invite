@@ -12,7 +12,7 @@ const CONFIG = {
   WISHES_ENDPOINT: "https://script.google.com/macros/s/AKfycbzdpNKzRBr8BCzLBrfefAi6hlcA0Dl5KgQBOqd3qn1OyWKtJfMOvGKHSP44iLeqbx5w/exec",
   // Shared album URL (Google Photos / Dropbox upload link). When set,
   // a QR code is generated and displayed automatically.
-  ALBUM_URL: "",
+  ALBUM_URL: "https://drive.google.com/drive/folders/18MJf_2YCV_Ehnrs5JcUMGehYBQ-tZ6OL",
   // Ceremony start - 2:00 PM West Africa Time.
   WEDDING_DATE: "2026-11-21T14:00:00+01:00",
   // Approximate venue coordinates (Ikorodu) - used only for the
@@ -446,67 +446,31 @@ const CONFIG = {
   else window.addEventListener("load", start);
 })();
 
-/* ── Words & Wishes ──────────────────────── */
+/* ── Wishes & Prayers: role gate → reveal the Padlet wall ──
+   Honour-system gate so the wall stays with the aso ebi ladies,
+   groomsmen, and family & friends. The Padlet only loads once a
+   role is chosen (data-src → src). */
 (() => {
-  const form = document.getElementById("wishForm");
-  const feed = document.getElementById("wishFeed");
-  const thanks = document.getElementById("wishThanks");
+  const gate = document.getElementById("wishesGate");
+  const padlet = document.getElementById("wishesPadlet");
+  if (!gate || !padlet) return;
+  const iframe = padlet.querySelector("iframe");
 
-  // The wishes wall starts empty; guests' messages populate it.
-  const SEEDED = [];
+  gate.querySelectorAll("[data-wishrole]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      if (iframe && iframe.dataset.src && !iframe.src) iframe.src = iframe.dataset.src;
+      gate.hidden = true;
+      padlet.hidden = false;
+      padlet.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  });
 
-  const stored = () => {
-    try { return JSON.parse(localStorage.getItem("eeWishes") || "[]"); }
-    catch { return []; }
-  };
-
-  const card = (w, animate) => {
-    const div = document.createElement("div");
-    div.className = "wish-card" + (animate ? " appear" : "");
-    const head = document.createElement("div");
-    head.className = "wish-card__head";
-    const name = document.createElement("span");
-    name.className = "wish-card__name";
-    name.textContent = w.name;
-    const role = document.createElement("span");
-    role.className = "wish-card__role";
-    role.textContent = w.role;
-    head.append(name, role);
-    const msg = document.createElement("p");
-    msg.className = "wish-card__msg";
-    msg.textContent = w.message;
-    div.append(head, msg);
-    return div;
-  };
-
-  [...SEEDED, ...stored()].forEach((w) => feed.appendChild(card(w, false)));
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(form).entries());
-    const wish = { name: data.name.trim(), role: data.role, message: data.message.trim() };
-    if (!wish.name || !wish.message) return;
-
-    feed.prepend(card(wish, true));
-    const all = stored();
-    all.push(wish);
-    localStorage.setItem("eeWishes", JSON.stringify(all));
-
-    if (CONFIG.WISHES_ENDPOINT) {
-      // text/plain keeps this a CORS "simple request" (no preflight),
-      // which Google Apps Script web apps accept. Fire-and-forget -
-      // the on-screen thank-you shows regardless.
-      fetch(CONFIG.WISHES_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify({ type: "wish", ...wish, at: new Date().toISOString() }),
-      }).catch(() => {});
-    }
-
-    form.reset();
-    thanks.hidden = false;
-    setTimeout(() => { thanks.hidden = true; }, 5000);
+  // Close the wall → return to the role gate.
+  const closeBtn = document.getElementById("wishesClose");
+  closeBtn && closeBtn.addEventListener("click", () => {
+    padlet.hidden = true;
+    gate.hidden = false;
+    gate.scrollIntoView({ behavior: "smooth", block: "nearest" });
   });
 })();
 
@@ -646,15 +610,28 @@ const haversineKm = (lat1, lon1, lat2, lon2) => {
     fallback.hidden = false;
   };
 
-  // Populate the manual dropdown.
-  for (const code of POPULAR_CODES) {
-    const a = AIRPORTS.find((x) => x[0] === code);
-    if (!a) continue;
-    const opt = document.createElement("option");
-    opt.value = a[0];
-    opt.textContent = `${a[2]} · ${a[1]} (${a[0]})`;
-    select.appendChild(opt);
-  }
+  // Every airport (sorted by city) so a guest can pick any departure point -
+  // even one they aren't currently in. A search box filters by city, airport
+  // name, or code (so "Václav", "Prague", or "PRG" all find the same one).
+  const search = document.getElementById("citySearch");
+  const depAirports = AIRPORTS
+    .filter((a) => a[0] !== "LOS")
+    .slice()
+    .sort((x, y) => x[2].localeCompare(y[2]));
+  const renderOptions = (q) => {
+    const query = (q || "").trim().toLowerCase();
+    select.innerHTML = '<option value="">Select an airport…</option>';
+    depAirports
+      .filter((a) => !query || `${a[1]} ${a[2]} ${a[0]}`.toLowerCase().includes(query))
+      .forEach((a) => {
+        const opt = document.createElement("option");
+        opt.value = a[0];
+        opt.textContent = `${a[2]} · ${a[1]} (${a[0]})`;
+        select.appendChild(opt);
+      });
+  };
+  renderOptions("");
+  if (search) search.addEventListener("input", () => renderOptions(search.value));
   select.addEventListener("change", () => {
     const a = AIRPORTS.find((x) => x[0] === select.value);
     if (!a) return;
@@ -697,8 +674,10 @@ const haversineKm = (lat1, lon1, lat2, lon2) => {
   });
 })();
 
-/* ── Shots: QR code ──────────────────────── */
+/* ── Shots: QR code + album button ───────── */
 (() => {
+  const albumBtn = document.getElementById("albumBtn");
+  if (albumBtn && CONFIG.ALBUM_URL) albumBtn.href = CONFIG.ALBUM_URL;
   if (!CONFIG.ALBUM_URL) return;
   const slot = document.getElementById("qrSlot");
   slot.innerHTML = "";
@@ -709,3 +688,6 @@ const haversineKm = (lat1, lon1, lat2, lon2) => {
     encodeURIComponent(CONFIG.ALBUM_URL);
   slot.appendChild(img);
 })();
+
+/* Guest photos go straight to the shared Google Drive album via the
+   "Add Your Photos" button (see the Shots section) - no backend needed. */

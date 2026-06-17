@@ -75,6 +75,8 @@ const AIRPORTS = [
   ["SEA", "Seattle–Tacoma", "Seattle, USA", 47.443, -122.301],
   // North America - Canada
   ["YYZ", "Toronto Pearson", "Toronto, Canada", 43.677, -79.624],
+  ["YEG", "Edmonton International", "Edmonton, Canada", 53.310, -113.580],
+  ["YWG", "Winnipeg Richardson International", "Winnipeg, Canada", 49.910, -97.240],
   ["YUL", "Montréal–Trudeau", "Montréal, Canada", 45.470, -73.741],
   ["YOW", "Ottawa Macdonald–Cartier", "Ottawa, Canada", 45.323, -75.669],
   ["YVR", "Vancouver International", "Vancouver, Canada", 49.195, -123.181],

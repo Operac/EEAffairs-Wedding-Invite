@@ -286,9 +286,10 @@
         <button class="btn btn--gold" id="airportBtn" type="button">Find my nearest airports</button>
         <div class="travel__results" id="airportResults" hidden></div>
         <div class="travel__fallback" id="airportFallback" hidden>
-          <label for="citySelect">Or choose where you&rsquo;re flying from:</label>
+          <label for="citySearch">Or choose where you&rsquo;re flying from:</label>
+          <input type="text" id="citySearch" class="travel__search" placeholder="Type a city or airport — e.g. Prague, Václav, Edmonton" autocomplete="off" />
           <select id="citySelect">
-            <option value="">Select a city…</option>
+            <option value="">Select an airport…</option>
           </select>
         </div>
       </article>
@@ -342,38 +343,42 @@
       <div class="gold-rule" data-rule></div>
     </div>
     <p class="wishes__intro" data-reveal>
-      For the aso ebi ladies who danced before the ceremony started. For the groomsmen who&rsquo;ve been
-      holding Ebenezer down for years. For the aunties who prayed. For the friends who saw this coming
-      before either of them did. This space is yours.
-      <br /><br />
-      Tell E&amp;E how you know them. What they mean to you. Leave a prayer or a wish for their marriage.
-      These words will stay on this page long after the day is over.
+      We&rsquo;d love a face to every name. Whether you can be there in person or not, share a
+      memory and a photo with us, and leave a prayer or a wish for the marriage.
     </p>
-    <div class="wishes__grid">
-      <form class="wishes__form" id="wishForm" data-reveal>
-        <label>Your name
-          <input type="text" name="name" required autocomplete="name" />
-        </label>
-        <label>Your role
-          <select name="role" required>
-            <option value="">Choose…</option>
-            <option>Aso Ebi Lady</option>
-            <option>Groomsman</option>
-            <option>Family (Bride&rsquo;s side)</option>
-            <option>Family (Groom&rsquo;s side)</option>
-            <option>Friend of the Couple</option>
-            <option>Guest</option>
-          </select>
-        </label>
-        <label>Your message
-          <textarea name="message" rows="6" required
-            placeholder="I've known Ebenezer since… / The moment I knew Elizabeth was special… / My prayer for their marriage is…"></textarea>
-        </label>
-        <button class="btn btn--gold" type="submit">Leave Your Words</button>
-        <p class="wishes__thanks" id="wishThanks" hidden>Thank you! Your words are with E&amp;E. ✨</p>
-      </form>
-      <div class="wishes__feed" id="wishFeed" data-reveal>
-        <!-- seeded + submitted messages render here -->
+
+    <!-- Wedding Memories: open to everyone, before the day and any time after -->
+    <div class="wishes__block" data-reveal>
+      <h3 class="wishes__block-title"><em>Wedding Memories</em></h3>
+      <p class="wishes__block-text">
+        For everyone who knows E&amp;E, near or far. Add your photo and a few words, before
+        November 21st or any time after, so we can put a face to every well-wisher.
+      </p>
+      <a class="btn btn--gold btn--big" href="https://docs.google.com/forms/d/e/1FAIpQLSfB2zhhIvgZWHshIlFG9lWunbzO-7SmDzA0JOfTPa22746Qvg/viewform" target="_blank" rel="noopener">Share a Memory</a>
+    </div>
+
+    <!-- Wishes & Prayers: the live wall, for the wedding party, family and close friends -->
+    <div class="wishes__block wishes__block--wall" data-reveal>
+      <h3 class="wishes__block-title"><em>Wishes &amp; Prayers</em></h3>
+      <p class="wishes__block-text">
+        A living wall for the aso ebi ladies, the groomsmen, and family &amp; close friends, to
+        leave words and prayers for the marriage.
+      </p>
+      <div class="wishes__gate" id="wishesGate">
+        <p class="wishes__gate-label">To open the wall, tell us who you are:</p>
+        <div class="wishes__roles">
+          <button type="button" class="btn btn--line" data-wishrole>Aso Ebi Lady</button>
+          <button type="button" class="btn btn--line" data-wishrole>Groomsman</button>
+          <button type="button" class="btn btn--line" data-wishrole>Family &amp; Friend</button>
+        </div>
+      </div>
+      <div class="wishes__padlet" id="wishesPadlet" hidden>
+        <button type="button" class="wishes__padlet-close" id="wishesClose">&times; Close the wall</button>
+        <div class="padlet-embed" style="border:1px solid rgba(43,26,13,0.15);border-radius:4px;box-sizing:border-box;overflow:hidden;position:relative;width:100%;background:#F4F4F4">
+          <p style="padding:0;margin:0">
+            <iframe data-src="https://padlet.com/embed/f3x7ytkm88tdohma" frameborder="0" allow="camera;microphone;geolocation;display-capture;clipboard-write" style="width:100%;height:608px;display:block;padding:0;margin:0" title="Wishes &amp; Prayers wall"></iframe>
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -457,8 +462,8 @@
       <div class="gold-rule" data-rule></div>
     </div>
     <p class="shots__copy" data-reveal>
-      At every table during the reception, you&rsquo;ll find a small card with a QR code.
-      Scan it to upload the photos you take on the day directly to our shared wedding album, so we can see the celebration through your eyes too.
+      Tap below, or scan the QR code, to open our shared album and add the photos
+      you take, so we can relive the day through your eyes too.
     </p>
     <div class="shots__qr-frame" data-reveal>
       <div class="shots__qr" id="qrSlot">
@@ -466,7 +471,12 @@
         <span class="shots__qr-soon">QR code arriving<br />with the album link</span>
       </div>
     </div>
-    <p class="shots__under" data-reveal>You can also scan ahead of the day using the code above.</p>
+    <a class="btn btn--gold btn--big shots__album-btn" id="albumBtn" href="https://drive.google.com/drive/folders/18MJf_2YCV_Ehnrs5JcUMGehYBQ-tZ6OL" target="_blank" rel="noopener" data-reveal>Add Your Photos</a>
+    <p class="shots__under" data-reveal>Opens our shared Google Drive album, where you can add your pictures.</p>
+    <p class="shots__hashtags" data-reveal>
+      Share your moments with<br />
+      <strong>#BecomingOdeogberin2026</strong> &nbsp;·&nbsp; <strong>#AnEleganceOfEsAndOs</strong>
+    </p>
   </section>
 
   <!-- ════════ 11 · FAQs ════════ -->
@@ -538,7 +548,7 @@
         <a href="tel:+2348154002358">+234 815 400 2358</a>
       </article>
     </div>
-    <p class="contact__note" data-reveal><em>For RSVP queries, Aso Ebi purchases, or any questions about the day, these are your people.</em></p>
+    <p class="contact__note" data-reveal><em>For RSVP queries or any questions about the day, these are your people. To get the Aso Ebi or Aso Oke fabric, just call the numbers above while stock lasts.</em></p>
   </section>
 
   </main>
