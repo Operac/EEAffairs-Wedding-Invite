@@ -1247,12 +1247,12 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
 }
 .dresscode__cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  gap: 20px;
 }
 .dress-card {
   border: 1px solid var(--ink-faint);
-  padding: 44px 30px;
+  padding: 30px 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -1283,6 +1283,8 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
 .dot--purple { --c: #7B4B94; }
 .dot--gold { --c: #C9A84C; }
 .dot--chocolate { --c: #3B1F0F; }
+.dot--pink { --c: #E8A0B0; }
+.dot--olive-gold { --c: #8B8B3A; }
 .dress-card h3 {
   font-family: var(--serif);
   font-weight: 500;
