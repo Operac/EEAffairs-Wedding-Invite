@@ -15,7 +15,7 @@ const CONFIG = {
   ALBUM_URL: "https://drive.google.com/drive/folders/18MJf_2YCV_Ehnrs5JcUMGehYBQ-tZ6OL",
   // Live site URL for the photo QR code. Leave blank to auto-use the
   // current address; set it to the final domain once deployed if you like.
-  SITE_URL: "",
+  SITE_URL: "https://eeaffairs.site",
   // Ceremony start - 2:00 PM West Africa Time.
   WEDDING_DATE: "2026-11-21T14:00:00+01:00",
   // Approximate venue coordinates (Ikorodu) - used only for the

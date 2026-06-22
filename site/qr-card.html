@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>QR Card · TheEEAffair Photo Upload</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .card {
+      width: 420px;
+      border: 1.5px solid #C9A84C;
+      padding: 48px 44px 44px;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Corner ornaments */
+    .card::before, .card::after {
+      content: "";
+      position: absolute;
+      width: 22px; height: 22px;
+      border-color: #C9A84C;
+      border-style: solid;
+    }
+    .card::before { top: 8px; left: 8px; border-width: 2px 0 0 2px; }
+    .card::after  { bottom: 8px; right: 8px; border-width: 0 2px 2px 0; }
+
+    .mono {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 52px;
+      color: #1E0E05;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .date {
+      font-family: 'Mulish', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #C9A84C;
+      margin-bottom: 28px;
+    }
+
+    .rule {
+      width: 40px; height: 1px;
+      background: #C9A84C;
+      margin: 0 auto 28px;
+      opacity: 0.7;
+    }
+
+    .qr-wrap {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 28px;
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 10px;
+      background: #FAF6EC;
+    }
+    .qr-wrap img { width: 100%; height: 100%; display: block; }
+
+    .instruction {
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 400;
+      color: #1E0E05;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+    .sub {
+      font-family: 'Mulish', sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(30,14,5,0.6);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .rule2 {
+      width: 28px; height: 1px;
+      background: #C9A84C;
+      margin: 0 auto 20px;
+      opacity: 0.5;
+    }
+
+    .url {
+      font-family: 'Mulish', sans-serif;
+      font-size: 10px;
+      font-weight: 400;
+      color: rgba(30,14,5,0.45);
+      letter-spacing: 0.06em;
+    }
+
+    .hashtags {
+      margin-top: 22px;
+      font-family: 'Mulish', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: #C9A84C;
+      line-height: 2;
+    }
+
+    @media print {
+      body { padding: 0; background: #fff; }
+      .card { border-color: #C9A84C; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="mono">Ebenezer &amp; Elizabeth</p>
+    <p class="date">21 · November · 2026 &nbsp;·&nbsp; Lagos</p>
+    <div class="rule"></div>
+
+    <div class="qr-wrap">
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=360x360&color=1E0E05&bgcolor=FAF6EC&data=https%3A%2F%2Feeaffairs.site%2Fupload.html"
+        alt="QR code — scan to upload photos"
+      />
+    </div>
+
+    <p class="instruction">Scan to share your photos</p>
+    <p class="sub">
+      No app or account needed.<br />
+      Your photos go straight into our wedding album.
+    </p>
+
+    <div class="rule2"></div>
+    <p class="url">eeaffairs.site/upload.html</p>
+
+    <p class="hashtags">
+      #BecomingOdeogberin2026 &nbsp;·&nbsp; #AnEleganceOfEsAndOs
+    </p>
+  </div>
+</body>
+</html>
