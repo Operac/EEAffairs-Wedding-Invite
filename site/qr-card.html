@@ -113,8 +113,18 @@
       line-height: 2;
     }
 
+    @page { size: A4 portrait; margin: 0; }
     @media print {
-      body { padding: 0; background: #fff; }
+      body {
+        padding: 0;
+        background: #fff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
       .card { border-color: #C9A84C; }
     }
   </style>

@@ -687,8 +687,14 @@ const haversineKm = (lat1, lon1, lat2, lon2) => {
   // at the reception lands a guest straight on the upload form.
   const slot = document.getElementById("qrSlot");
   if (!slot) return;
-  const base = (CONFIG.SITE_URL || location.origin + location.pathname).replace(/\/[^/]*$/, "/");
-  const uploadUrl = base + "upload.html";
+  // Build an absolute URL to upload.html. If SITE_URL is set (e.g.
+  // "https://eeaffairs.site"), use it as the origin; otherwise derive the
+  // current folder from the address bar. Strip any trailing file/slash so we
+  // don't end up with a broken "https://upload.html".
+  const base = CONFIG.SITE_URL
+    ? CONFIG.SITE_URL.replace(/\/+$/, "")
+    : (location.origin + location.pathname).replace(/\/[^/]*$/, "");
+  const uploadUrl = base + "/upload.html";
   slot.innerHTML = "";
   const img = document.createElement("img");
   img.alt = "QR code: scan to open the photo upload form";
