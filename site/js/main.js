@@ -461,7 +461,9 @@ const CONFIG = {
 
   gate.querySelectorAll("[data-wishrole]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      if (iframe && iframe.dataset.src && !iframe.src) iframe.src = iframe.dataset.src;
+      // Each role opens its own wall. Only (re)load when the wall changes.
+      const url = btn.dataset.padlet;
+      if (iframe && url && iframe.src !== url) iframe.src = url;
       gate.hidden = true;
       padlet.hidden = false;
       padlet.scrollIntoView({ behavior: "smooth", block: "nearest" });
