@@ -34,6 +34,42 @@ section and confirm it appears in your Drive folder and on the **Photos** tab.
 
 ---
 
+## Required permissions (manifest `oauthScopes`)
+
+The script needs three Google authorization scopes. If you edit
+`appsscript.json` directly, list **exactly** these — once scopes are declared
+explicitly, Apps Script stops auto-adding them, so a missing one silently
+breaks that one feature:
+
+```json
+"oauthScopes": [
+  "https://www.googleapis.com/auth/spreadsheets",
+  "https://www.googleapis.com/auth/drive",
+  "https://www.googleapis.com/auth/script.send_mail"
+]
+```
+
+- `spreadsheets` — write RSVPs / Wishes / Photos rows to the Sheet.
+- `drive` — save uploaded photos into the Drive folder (`DriveApp`). Missing
+  it → `{"ok":false,"error":"...DriveApp.getFolderById..."}` and photos don't
+  upload.
+- `script.send_mail` — email the bride on each RSVP/wish (`MailApp.sendEmail`).
+  Use this, **not** `gmail.send` (that's for `GmailApp`) and **not**
+  `mail.google.com` (rejected as invalid). Wrong mail scope → the endpoint
+  returns `{"ok":false,"error":"...MailApp.sendEmail. Required ...
+  script.send_mail"}` and no email is sent (the RSVP row still saves).
+
+After changing scopes you must re-authorize: run any function that actually
+uses the API (e.g. a temporary `testEmail()` that calls `MailApp.sendEmail`),
+approve the new permission, then **Deploy → Manage deployments → ✏️ Edit →
+New version → Deploy**. Running only `doGet` won't prompt for the mail scope,
+and running `doPost` by hand throws (there's no request object).
+
+To diagnose without the site, POST to the `/exec` URL with
+`Content-Type: text/plain` and read the JSON `ok` / `error` in the response.
+
+---
+
 ## The Apps Script code — paste this whole block
 
 ```javascript
