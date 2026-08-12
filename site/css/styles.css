@@ -1636,6 +1636,13 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
   color: var(--cream-dim);
   opacity: 0.85;
 }
+.gifts__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
 .gifts__bank { margin-top: 34px; }
 .gifts__bank-label {
   font-family: var(--sans);
