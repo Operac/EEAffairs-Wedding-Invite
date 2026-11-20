@@ -872,6 +872,90 @@ body.hero-in .hero .countdown { animation: heroFade 1.1s ease 1.3s both; }
 }
 .gallery__dot:hover { background: var(--gold-pale); }
 .gallery__dot.is-active { background: var(--gold); transform: scale(1.3); }
+
+/* Group labels (Pre-Wedding Shoot / Proposal) */
+.gallery__group-title {
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(22px, 3vw, 30px);
+  color: var(--gold-light);
+  margin: 56px 0 30px;
+}
+.gallery__group-title::after {
+  content: "◆";
+  display: block;
+  font-style: normal;
+  font-size: 9px;
+  color: var(--gold);
+  margin-top: 10px;
+  opacity: 0.8;
+}
+.gallery__item img { cursor: zoom-in; }
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px, 4vw, 48px);
+  background: rgba(20, 10, 4, 0);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, background 0.35s ease, visibility 0s linear 0.35s;
+}
+.lightbox.open {
+  opacity: 1;
+  visibility: visible;
+  background: rgba(20, 10, 4, 0.93);
+  transition: opacity 0.35s ease, background 0.35s ease;
+}
+.lightbox__img {
+  max-width: min(92vw, 860px);
+  max-height: 86vh;
+  object-fit: contain;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.6);
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.42s ease;
+}
+.lightbox.open .lightbox__img { transform: scale(1); opacity: 1; }
+.lightbox__close,
+.lightbox__nav {
+  position: absolute;
+  background: transparent;
+  border: none;
+  color: var(--gold-bright);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease, transform 0.2s ease;
+  z-index: 2;
+}
+.lightbox__close {
+  top: clamp(14px, 3vw, 28px);
+  right: clamp(16px, 3vw, 32px);
+  font-size: 40px;
+}
+.lightbox__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(44px, 7vw, 72px);
+  padding: 8px 14px;
+}
+.lightbox__nav--prev { left: clamp(4px, 2vw, 24px); }
+.lightbox__nav--next { right: clamp(4px, 2vw, 24px); }
+.lightbox__close:hover { color: #fff; transform: scale(1.1); }
+.lightbox__nav:hover { color: #fff; }
+.lightbox__nav--prev:hover { transform: translateY(-50%) translateX(-3px); }
+.lightbox__nav--next:hover { transform: translateY(-50%) translateX(3px); }
+@media (max-width: 560px) {
+  .lightbox__nav { font-size: 40px; }
+}
 .gallery__placeholder {
   display: flex;
   flex-direction: column;

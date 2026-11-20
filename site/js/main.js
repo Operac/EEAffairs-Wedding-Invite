@@ -346,10 +346,11 @@ const CONFIG = {
    JS-driven so a dot can scrub the chosen photo back to centre, then
    the reel resumes its flow. Pauses on hover. */
 (() => {
-  const marquee = document.querySelector(".gallery__marquee");
-  const track = document.getElementById("galleryTrack");
-  const dotsWrap = document.getElementById("galleryDots");
-  if (!marquee || !track) return;
+ const initReel = (marquee) => {
+  const track = marquee.querySelector(".gallery__track");
+  let dotsWrap = marquee.nextElementSibling;
+  if (!dotsWrap || !(dotsWrap.classList && dotsWrap.classList.contains("gallery__dots"))) dotsWrap = null;
+  if (!track) return;
 
   const originals = [...track.children];
   const N = originals.length;
@@ -447,6 +448,61 @@ const CONFIG = {
   window.addEventListener("resize", measure);
   if (document.readyState === "complete") start();
   else window.addEventListener("load", start);
+ };
+ document.querySelectorAll(".gallery__marquee").forEach(initReel);
+})();
+
+/* ── Lightbox: tap any gallery photo to view it full-size ───── */
+(() => {
+  const lb = document.getElementById("lightbox");
+  if (!lb) return;
+  const lbImg = document.getElementById("lightboxImg");
+  const btnClose = document.getElementById("lightboxClose");
+  const btnPrev = document.getElementById("lightboxPrev");
+  const btnNext = document.getElementById("lightboxNext");
+
+  // Ordered list of gallery photos (originals only — clones are aria-hidden).
+  const photos = [...document.querySelectorAll('.gallery__item:not([aria-hidden="true"]) img')]
+    .map((img) => ({ src: img.getAttribute("src"), alt: img.getAttribute("alt") || "" }));
+  if (!photos.length) return;
+  let idx = 0;
+
+  const show = (i) => {
+    idx = (i + photos.length) % photos.length;
+    lbImg.src = photos[idx].src;
+    lbImg.alt = photos[idx].alt;
+  };
+  const open = (src) => {
+    const i = photos.findIndex((p) => p.src === src);
+    show(i < 0 ? 0 : i);
+    lb.classList.add("open");
+    lb.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  };
+  const close = () => {
+    lb.classList.remove("open");
+    lb.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  };
+
+  // Open on a tap of any gallery photo (originals and their flowing clones).
+  document.querySelectorAll(".gallery__track").forEach((track) => {
+    track.addEventListener("click", (e) => {
+      const img = e.target.closest("img");
+      if (img) open(img.getAttribute("src"));
+    });
+  });
+
+  btnClose.addEventListener("click", close);
+  btnPrev.addEventListener("click", () => show(idx - 1));
+  btnNext.addEventListener("click", () => show(idx + 1));
+  lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
+  document.addEventListener("keydown", (e) => {
+    if (!lb.classList.contains("open")) return;
+    if (e.key === "Escape") close();
+    else if (e.key === "ArrowLeft") show(idx - 1);
+    else if (e.key === "ArrowRight") show(idx + 1);
+  });
 })();
 
 /* ── Wishes & Prayers: role gate → reveal the Padlet wall ──

@@ -138,8 +138,9 @@
       <h2 class="section__title"><em>Before the Day</em></h2>
       <div class="gold-rule" data-rule></div>
     </div>
+    <h3 class="gallery__group-title" data-reveal>The Pre-Wedding Shoot</h3>
     <div class="gallery__marquee" data-reveal>
-      <div class="gallery__track" id="galleryTrack">
+      <div class="gallery__track">
         <figure class="gallery__item">
           <img src="images/prewedding/prewedding-01.jpg" alt="Elizabeth and Ebenezer, pre-wedding shoot" loading="lazy" />
         </figure>
@@ -200,6 +201,13 @@
         <figure class="gallery__item">
           <img src="images/prewedding/prewedding-20.jpg" alt="Elizabeth and Ebenezer, pre-wedding shoot" loading="lazy" />
         </figure>
+      </div>
+    </div>
+    <div class="gallery__dots" aria-label="Jump to a pre-wedding photo"></div>
+
+    <h3 class="gallery__group-title" data-reveal>The Proposal</h3>
+    <div class="gallery__marquee" data-reveal>
+      <div class="gallery__track">
         <figure class="gallery__item">
           <img src="images/img_4116.jpg" alt="Elizabeth and Ebenezer by candlelight" loading="lazy" />
         </figure>
@@ -223,7 +231,15 @@
         </figure>
       </div>
     </div>
-    <div class="gallery__dots" id="galleryDots" aria-label="Jump to a photo"></div>
+    <div class="gallery__dots" aria-label="Jump to a proposal photo"></div>
+
+    <!-- Lightbox: tap any photo to view it full-size -->
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo viewer">
+      <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Close photo">&times;</button>
+      <button class="lightbox__nav lightbox__nav--prev" id="lightboxPrev" type="button" aria-label="Previous photo">&#8249;</button>
+      <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+      <button class="lightbox__nav lightbox__nav--next" id="lightboxNext" type="button" aria-label="Next photo">&#8250;</button>
+    </div>
   </section>
 
   <!-- ════════ 04 · THE CELEBRATIONS ════════ -->
